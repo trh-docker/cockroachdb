@@ -1,5 +1,5 @@
 FROM quay.io/spivegin/cockroach_builder AS build-env-go113
-WORKDIR /opt/cockroachdb/
+WORKDIR /opt/src/github.com/cockroachdb/
 
 RUN apt-get update && apt-get install -y gcc make git 
 
