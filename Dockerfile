@@ -9,3 +9,5 @@ RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     go mod init cockroach &&\
     go mod tidy &&\
     make
+
+FROM quay.io/spivegin/tlmbasedebian
