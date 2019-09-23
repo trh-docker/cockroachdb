@@ -1,5 +1,6 @@
-FROM quay.io/spivegin/cockroach_builder AS build-env-go125
-#FROM quay.io/spivegin/cockroach_builder
+# FROM quay.io/spivegin/cockroach_builder AS build-env-go125
+FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
+
 WORKDIR $GOPATH/src/github.com/cockroachdb/
 
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
