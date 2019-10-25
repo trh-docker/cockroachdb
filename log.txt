@@ -7,5 +7,7 @@ changed base build image
 # FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
 
 # RUN apt-get update && apt-get upgrade && apt-get install gnutls-bin -y
+turn off ssl for git
+RUN git config --global http.sslVerify false
 
  
