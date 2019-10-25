@@ -1,7 +1,7 @@
 # FROM quay.io/spivegin/cockroach_builder AS build-env-go125
 FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
 
-RUN apt update && apt upgrade && apt install gnutls-bin -y
+RUN apt-get update && apt-get upgrade && apt-get install gnutls-bin -y
 WORKDIR $GOPATH/src/github.com/cockroachdb/
 
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\

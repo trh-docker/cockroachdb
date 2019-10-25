@@ -1,3 +1,5 @@
 added
 RUN apt update && apt upgrade && apt install gnutls-bin -y
+replaced apt with apt-get
+RUN apt-get update && apt-get upgrade && apt-get install gnutls-bin -y
  
