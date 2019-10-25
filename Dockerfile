@@ -24,7 +24,7 @@ ENV CGO_ENABLED=1 \
     SUFFIX=-linux-2.6.32-gnu-amd64 
 COPY --from=golang-src /opt/cockroach $GOPATH/src/github.com/cockroachdb/cockroach
 RUN cd cockroach &&\
-    make
+    make buildshort
 
 FROM quay.io/spivegin/tlmbasedebian
 WORKDIR /opt/cockroach
