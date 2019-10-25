@@ -1,5 +1,5 @@
 FROM quay.io/spivegin/golang AS golang-src
-RUN apt-get update && apt-get upgrade && apt-get install -y gnutls-bin
+RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
 WORKDIR /opt/
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
