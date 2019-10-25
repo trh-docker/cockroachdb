@@ -1,3 +1,10 @@
+FROM quay.io/spivegin/golang AS golang-src
+RUN apt-get update && apt-get upgrade && apt-get install -y gnutls-bin
+WORKDIR /opt/
+RUN git clone https://github.com/cockroachdb/cockroach.git &&\
+    cd cockroach &&\
+    go mod vendor
+
 # FROM quay.io/spivegin/cockroach_builder AS build-env-go125
 FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
 
@@ -16,8 +23,8 @@ ENV CGO_ENABLED=1 \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
     SUFFIX=-linux-2.6.32-gnu-amd64 
-RUN git clone https://github.com/cockroachdb/cockroach.git &&\
-    cd cockroach &&\
+COPY golang-src /opt/cockroach $GOPATH/src/github.com/cockroachdb/
+RUN cd cockroach &&\
     make
 
 FROM quay.io/spivegin/tlmbasedebian
