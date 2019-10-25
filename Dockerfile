@@ -1,8 +1,9 @@
-FROM quay.io/spivegin/golang AS golang-src
+FROM quay.io/spivegin/golang:v1.13 AS golang-src
 RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
 WORKDIR /opt/
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
+    go mod init &&\
     go mod vendor
 
 # FROM quay.io/spivegin/cockroach_builder AS build-env-go125
