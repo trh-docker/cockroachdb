@@ -2,4 +2,10 @@ added
 RUN apt update && apt upgrade && apt install gnutls-bin -y
 replaced apt with apt-get
 RUN apt-get update && apt-get upgrade && apt-get install gnutls-bin -y
+changed base build image
+# FROM quay.io/spivegin/cockroach_builder AS build-env-go125
+# FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
+
+# RUN apt-get update && apt-get upgrade && apt-get install gnutls-bin -y
+
  
