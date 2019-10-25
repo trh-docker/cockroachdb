@@ -4,7 +4,7 @@ WORKDIR /opt/
 ENV GO111MODULE=on
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
-    go init github.com/cockroachdb/cockroach &&\
+    go mod init github.com/cockroachdb/cockroach &&\
     go mod vendor
 
 # FROM quay.io/spivegin/cockroach_builder AS build-env-go125
