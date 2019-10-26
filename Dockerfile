@@ -1,9 +1,9 @@
 
-FROM quay.io/spivegin/cockroach_buildrunner AS build-env-go125
+FROM quay.io/spivegin/cockroach_buildrunner
 ADD files/Source.list /etc/apt/sources.list
 
 WORKDIR $GOPATH/src/github.com/cockroachdb/
-RUN git config --global http.sslVerify false
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
 ENV CGO_ENABLED=1 \
     XGOOS=linux \
@@ -18,11 +18,11 @@ RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     make buildoss
     make build
 
-FROM quay.io/spivegin/tlmbasedebian
-WORKDIR /opt/cockroach
-COPY --from=build-env-go125 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
-RUN cd /opt/bin/ &&\
-    mv cockroachoss cockroach && chmod +x cockroach &&\
-    ln -s /opt/bin/cockroach /bin/cockroach
+# FROM quay.io/spivegin/tlmbasedebian
+# WORKDIR /opt/cockroach
+# COPY --from=build-env-go125 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
+# RUN cd /opt/bin/ &&\
+#     mv cockroachoss cockroach && chmod +x cockroach &&\
+#     ln -s /opt/bin/cockroach /bin/cockroach
 
 
