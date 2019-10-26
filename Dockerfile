@@ -12,7 +12,6 @@ ENV CGO_ENABLED=1 \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
     SUFFIX=-linux-2.6.32-gnu-amd64 
-# COPY --from=golang-src /opt/cockroach $GOPATH/src/github.com/cockroachdb/cockroach
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
