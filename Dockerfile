@@ -1,8 +1,8 @@
 
-FROM quay.io/spivegin/cockroach_buildrunner
+FROM quay.io/spivegin/cockroach_buildrunner:latest AS builder
 ADD files/Source.list /etc/apt/sources.list
 
-WORKDIR $GOPATH/src/github.com/cockroachdb/
+WORKDIR /go/src/github.com/cockroachdb/
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
 ENV CGO_ENABLED=1 \
@@ -18,11 +18,15 @@ RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     make buildoss
     make build
 
-# FROM quay.io/spivegin/tlmbasedebian
-# WORKDIR /opt/cockroach
-# COPY --from=build-env-go125 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
-# RUN cd /opt/bin/ &&\
-#     mv cockroachoss cockroach && chmod +x cockroach &&\
-#     ln -s /opt/bin/cockroach /bin/cockroach
+FROM quay.io/spivegin/tlmbasedebian
+WORKDIR /opt/cockroach
+COPY --from=builder /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
+COPY --from=builder /go/src/github.com/cockroachdb/cockroach/cockroachshort /opt/bin/
+COPY --from=builder /go/src/github.com/cockroachdb/cockroach/cockroach /opt/bin/
+RUN cd /opt/bin/ &&\
+    chmod +x cockroachoss &&\
+    chmod +x cockroachshort &&\
+    chmod +x cockroach &&\
+    ln -s /opt/bin/cockroach /bin/cockroach
 
 
