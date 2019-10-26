@@ -1,6 +1,6 @@
 
-FROM quay.io/spivegin/cockroach_buildrunner:latest AS builder
-ADD files/Source.list /etc/apt/sources.list
+FROM quay.io/spivegin/cockroach_builder:latest AS builder
+ADD ./files/Source.list /etc/apt/sources.list
 
 WORKDIR /go/src/github.com/cockroachdb/
 
