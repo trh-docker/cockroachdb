@@ -14,7 +14,7 @@ ENV CGO_ENABLED=1 \
 RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
-    make buildoss
+    make buildoss &&\
     make build
 
 FROM quay.io/spivegin/tlmbasedebian
