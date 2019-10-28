@@ -9,7 +9,7 @@ ENV CGO_ENABLED=1 \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
     SUFFIX=-linux-2.6.32-gnu-amd64
-RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "jhondoe1999" && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "jhondoe1999" && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 RUN git clone git@github.com:cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
