@@ -9,8 +9,7 @@ ENV CGO_ENABLED=1 \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
     SUFFIX=-linux-2.6.32-gnu-amd64 
-RUN git config --global http.postBuffer 1048576000
-RUN git clone https://github.com/cockroachdb/cockroach.git &&\
+RUN git clone git@github.com:cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
     make buildoss &&\
