@@ -12,18 +12,18 @@ deb http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted
 ## team. Also, please note that software in universe WILL NOT receive any
 ## review or updates from the Ubuntu security team.
 deb http://archive.ubuntu.com/ubuntu/ xenial universe
-deb-src http://archive.ubuntu.com/ubuntu/ xenial universe
+#deb-src http://archive.ubuntu.com/ubuntu/ xenial universe
 deb http://archive.ubuntu.com/ubuntu/ xenial-updates universe
-deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates universe
+#deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates universe
 
 ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## team, and may not be under a free licence. Please satisfy yourself as to
 ## your rights to use the software. Also, please note that software in
 ## multiverse WILL NOT receive any review or updates from the Ubuntu
 ## security team.
-deb http://archive.ubuntu.com/ubuntu/ xenial multiverse
+# deb http://archive.ubuntu.com/ubuntu/ xenial multiverse
 # deb-src http://archive.ubuntu.com/ubuntu/ xenial multiverse
-deb http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+# deb http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse
 # deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse
 
 ## N.B. software from this repository may not have been tested as
@@ -45,5 +45,5 @@ deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted
 # deb-src http://security.ubuntu.com/ubuntu/ xenial-security main restricted
 deb http://security.ubuntu.com/ubuntu/ xenial-security universe
 # deb-src http://security.ubuntu.com/ubuntu/ xenial-security universe
-deb http://security.ubuntu.com/ubuntu/ xenial-security multiverse
+# deb http://security.ubuntu.com/ubuntu/ xenial-security multiverse
 # deb-src http://security.ubuntu.com/ubuntu/ xenial-security multiverse
