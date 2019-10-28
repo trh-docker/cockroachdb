@@ -1,5 +1,5 @@
 
-FROM quay.io/spivegin/cockroach_buildrunner AS builder-runner-a20
+FROM quay.io/spivegin/cockroach_buildrunner AS build-runner-a20
 
 WORKDIR /go/src/github.com/cockroachdb/
 
@@ -19,9 +19,9 @@ RUN git clone https://github.com/cockroachdb/cockroach.git &&\
 
 FROM quay.io/spivegin/tlmbasedebian
 WORKDIR /opt/cockroach
-COPY --from=builder-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
-COPY --from=builder-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachshort /opt/bin/
-COPY --from=builder-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroach /opt/bin/
+COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
+COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachshort /opt/bin/
+COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroach /opt/bin/
 RUN cd /opt/bin/ &&\
     chmod +x cockroachoss &&\
     chmod +x cockroachshort &&\
