@@ -8,7 +8,8 @@ ENV CGO_ENABLED=1 \
     XCMAKE_SYSTEM_NAME=Linux \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
-    SUFFIX=-linux-2.6.32-gnu-amd64 
+    SUFFIX=-linux-2.6.32-gnu-amd64
+RUN ssh-keygen -t rsa -N "" 
 RUN git clone git@github.com:cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
