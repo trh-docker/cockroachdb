@@ -1,6 +1,7 @@
 
 FROM quay.io/spivegin/cockroach_buildrunner AS build-runner-a20
 
+USER roach
 WORKDIR /go/src/github.com/cockroachdb/
 ADD files/Source.list /etc/apt/sources.list
 RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
