@@ -1,10 +1,7 @@
 
-FROM quay.io/spivegin/cockroach_buildrunner AS build-runner-a20
+FROM quay.io/spivegin/cockroach_builder AS build
 
-USER root
 WORKDIR /go/src/github.com/cockroachdb/
-ADD files/Source.list /etc/apt/sources.list
-RUN apt-get update && apt-get upgrade -y && apt-get install -y gnutls-bin
 ENV CGO_ENABLED=1 \
     XGOOS=linux \
     XGOARCH=amd64 \
@@ -20,9 +17,9 @@ RUN git clone https://github.com/cockroachdb/cockroach.git &&\
 
 FROM quay.io/spivegin/tlmbasedebian
 WORKDIR /opt/cockroach
-COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
-COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroachshort /opt/bin/
-COPY --from=build-runner-a20 /go/src/github.com/cockroachdb/cockroach/cockroach /opt/bin/
+COPY --from=build /go/src/github.com/cockroachdb/cockroach/cockroachoss /opt/bin/
+COPY --from=build /go/src/github.com/cockroachdb/cockroach/cockroachshort /opt/bin/
+COPY --from=build /go/src/github.com/cockroachdb/cockroach/cockroach /opt/bin/
 RUN cd /opt/bin/ &&\
     chmod +x cockroachoss &&\
     chmod +x cockroachshort &&\
