@@ -2,7 +2,8 @@
 FROM quay.io/spivegin/cockroachdb_builder AS build
 
 WORKDIR /opt/src/github.com/cockroachdb/
-ENV CGO_ENABLED=1 \
+ENV GOPATH=/opt/src/ \
+    CGO_ENABLED=1 \
     XGOOS=linux \
     XGOARCH=amd64 \
     XCMAKE_SYSTEM_NAME=Linux \
