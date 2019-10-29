@@ -17,6 +17,7 @@ ENV CGO_ENABLED=1 \
 # RUN go get -u github.com/golang/dep/cmd/dep/...
 COPY --from=source /opt/cockroach  /src/github.com/cockroachdb/cockroach
 # RUN cd cockroach && dep ensure
+RUN git config --global user.name "quadtone" && git config --global user.email "quadtone@txtsme.com" && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 RUN cd /src/github.com/cockroachdb/cockroach && make buildshort
 RUN cd /src/github.com/cockroachdb/cockroach && make buildoss
 RUN cd /src/github.com/cockroachdb/cockroach && make build
