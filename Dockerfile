@@ -1,5 +1,5 @@
 
-FROM quay.io/spivegin/cockroach_builder AS build
+FROM quay.io/spivegin/cockroachdb_builder AS build
 
 WORKDIR /go/src/github.com/cockroachdb/
 ENV CGO_ENABLED=1 \
@@ -9,8 +9,8 @@ ENV CGO_ENABLED=1 \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
     SUFFIX=-linux-2.6.32-gnu-amd64
-RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "jhondoe1999" && ssh-keyscan -t rsa gitlab.com > ~/.ssh/known_hosts
-RUN git clone git@gitlab.com:cockroachdb/cockroach.git &&\
+# RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "jhondoe1999" && ssh-keyscan -t rsa gitlab.com > ~/.ssh/known_hosts
+RUN git clone https://github.com/cockroachdb/cockroach.git &&\
     cd cockroach &&\
     make buildshort &&\
     make buildoss &&\
