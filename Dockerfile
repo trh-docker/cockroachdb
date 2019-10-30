@@ -16,7 +16,8 @@ ENV CGO_ENABLED=1 \
 RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "quadtone" && git config --global user.email "quadtone@txtsme.com" 
 COPY --from=source /root/.ssh /root/.ssh
 RUN git clone git@github.com:cockroachdb/cockroach.git 
-RUN go get github.com/pkg/errors
+RUN go get github.com/pkg/errors &&\
+    go get github.com/cockroachdb/rocksdb
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildshort
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildoss
 RUN cd /go/src/github.com/cockroachdb/cockroach && make build
@@ -31,5 +32,3 @@ RUN cd /opt/bin/ &&\
     chmod +x cockroachshort &&\
     chmod +x cockroach &&\
     ln -s /opt/bin/cockroach /bin/cockroach
-
-
