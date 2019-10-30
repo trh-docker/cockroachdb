@@ -2,7 +2,7 @@ FROM quay.io/spivegin/gitonly:latest AS source
 
 FROM quay.io/spivegin/cockroach_buildrunner AS build
 WORKDIR /go/src/github.com/cockroachdb/
-ENV CGO_ENABLED=1 \
+ENV CGO_ENABLED=0 \
     XGOOS=linux \
     XGOARCH=amd64 \
     XCMAKE_SYSTEM_NAME=Linux \
