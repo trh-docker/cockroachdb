@@ -17,9 +17,9 @@ RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "q
 COPY --from=source /root/.ssh /root/.ssh
 RUN git clone git@github.com:cockroachdb/cockroach.git
 
-RUN cd /src/github.com/cockroachdb/cockroach && make buildshort
-RUN cd /src/github.com/cockroachdb/cockroach && make buildoss
-RUN cd /src/github.com/cockroachdb/cockroach && make build
+RUN cd /go/src/github.com/cockroachdb/cockroach && make buildshort
+RUN cd /go/src/github.com/cockroachdb/cockroach && make buildoss
+RUN cd /go/src/github.com/cockroachdb/cockroach && make build
 
 FROM quay.io/spivegin/tlmbasedebian
 WORKDIR /opt/cockroach
