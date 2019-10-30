@@ -8,7 +8,8 @@ ENV CGO_ENABLED=1 \
     XCMAKE_SYSTEM_NAME=Linux \
     TARGET_TRIPLE=x86_64-unknown-linux-gnu \
     LDFLAGS="-static-libgcc -static-libstdc++" \
-    SUFFIX=-linux-2.6.32-gnu-amd64 
+    SUFFIX=-linux-2.6.32-gnu-amd64 \
+    GOPATH=/opt/go/src
 RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "quadtone" && git config --global user.email "quadtone@txtsme.com" 
 COPY --from=source /root/.ssh /root/.ssh
 RUN git config --global url.git@github.com:.insteadOf https://github.com/
