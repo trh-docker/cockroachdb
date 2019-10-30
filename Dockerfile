@@ -17,6 +17,7 @@ RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "q
 COPY --from=source /root/.ssh /root/.ssh
 RUN git clone git@github.com:cockroachdb/cockroach.git &&\
     git clone git@github.com:cockroachdb/rocksdb.git
+RUN git config --global url.git@github.com:.insteadOf https://github.com/
 RUN go get github.com/pkg/errors 
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildshort
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildoss
