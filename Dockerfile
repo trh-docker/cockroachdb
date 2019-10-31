@@ -1,6 +1,5 @@
 FROM quay.io/spivegin/gitonly:latest AS source
 
-<<<<<<< HEAD
 # FROM quay.io/spivegin/golang:v1.12.12 AS golang
 FROM quay.io/spivegin/cockroach_buildrunner AS build
 WORKDIR /go/src/github.com/cockroachdb/
@@ -11,15 +10,6 @@ RUN git clone git@github.com:cockroachdb/cockroach.git &&\
    go get github.com/pkg/errors
 # COPY --from=golang /opt/go /usr/local/go 
 # RUN cd cockroach && git pull
-=======
-FROM quay.io/spivegin/cockroach_buildrunner AS build
-WORKDIR /go/src/github.com/cockroachdb/
-RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && git config --global user.name "quadtone" && git config --global user.email "quadtone@txtsme.com" 
-COPY --from=source /root/.ssh /root/.ssh
-RUN git config --global url.git@github.com:.insteadOf https://github.com/
-RUN git clone git@github.com:cockroachdb/cockroach.git &&\
-    go get github.com/pkg/errors 
->>>>>>> fd32661d5ed2348cf31f7105d61b81244d58b898
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildshort
 RUN cd /go/src/github.com/cockroachdb/cockroach && make buildoss
 RUN cd /go/src/github.com/cockroachdb/cockroach && make build
@@ -33,8 +23,4 @@ RUN cd /opt/bin/ &&\
     chmod +x cockroachoss &&\
     chmod +x cockroachshort &&\
     chmod +x cockroach &&\
-<<<<<<< HEAD
     ln -s /opt/bin/cockroach /bin/cockroach
-=======
-    ln -s /opt/bin/cockroach /bin/cockroach
->>>>>>> fd32661d5ed2348cf31f7105d61b81244d58b898
