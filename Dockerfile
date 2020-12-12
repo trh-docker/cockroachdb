@@ -7,7 +7,7 @@ COPY --from=source /root/.ssh /root/.ssh
 RUN git config --global url.git@github.com:.insteadOf https://github.com/
 RUN git clone https://gitlab.com/trhhosting/cockroach.git &&\
     cd cockroach &&\
-    unzip cockroach-v20.2.2.linux-amd64.zip &&\
+    unzip cockroach-v20.2.2.linux-amd64.zip
 
 
 FROM quay.io/spivegin/tlmbasedebian
